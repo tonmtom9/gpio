@@ -13,7 +13,7 @@ typedef struct gpio {
 }GPIO;
 
 int input(int argc, char **argument, GPIO *p_io);
-int exportpin(GPIO *p_io);
+int export_pin(GPIO *p_io);
 int direction(GPIO *p_io);
 int toggle(GPIO *p_io);
 int unexport(GPIO *p_io);
@@ -40,7 +40,7 @@ int input(int argc, char **argument, GPIO *p_io){
     return 0;
 }
 
-int exportpin(GPIO *p_io){
+int export_pin(GPIO *p_io){
 
     if((p_io->fd = open("/sys/class/gpio/export", O_WRONLY)) == -1){
         printf("Unable to open /sys/class/gpio/export\n");
@@ -65,7 +65,7 @@ int direction(GPIO *p_io){
     }
 
     if ((write(p_io->fd, "out", 3) != 3)){
-        printf("Error writing to /sys/class/gpio/gpio24/direction");
+        printf("Error writing to /sys/class/gpio/gpio24/direction\n");
         return EXIT_FAILURE;
     }
 
